@@ -2,15 +2,13 @@
 #include <cstring>
 #include <algorithm>
 
-// Конвертация из uint32_t
 uint2022_t from_uint(uint32_t value) {
     uint2022_t result;
-    memset(&result, 0, sizeof(result));  // Обнуляем все части
-    result.parts[0] = value;  // Младшие 32 бита
+    memset(&result, 0, sizeof(result));
+    result.parts[0] = value;
     return result;
 }
 
-// Конвертация из строки
 uint2022_t from_string(const char* str) {
     uint2022_t result = from_uint(0);
     while (*str) {
@@ -22,7 +20,6 @@ uint2022_t from_string(const char* str) {
     return result;
 }
 
-// Сложение
 uint2022_t operator+(const uint2022_t& lhs, const uint2022_t& rhs) {
     uint2022_t result;
     uint64_t carry = 0;
@@ -34,7 +31,6 @@ uint2022_t operator+(const uint2022_t& lhs, const uint2022_t& rhs) {
     return result;
 }
 
-// Вычитание
 uint2022_t operator-(const uint2022_t& lhs, const uint2022_t& rhs) {
     uint2022_t result;
     uint32_t borrow = 0;
@@ -46,7 +42,6 @@ uint2022_t operator-(const uint2022_t& lhs, const uint2022_t& rhs) {
     return result;
 }
 
-// Умножение
 uint2022_t operator*(const uint2022_t& lhs, const uint2022_t& rhs) {
     uint64_t temp[128] = { 0 };
     for (int i = 0; i < 64; i++) {
@@ -67,7 +62,6 @@ uint2022_t operator*(const uint2022_t& lhs, const uint2022_t& rhs) {
     return result;
 }
 
-// Сравнение (==)
 bool operator==(const uint2022_t& lhs, const uint2022_t& rhs) {
     for (int i = 0; i < 64; i++) {
         if (lhs.parts[i] != rhs.parts[i]) return false;
@@ -75,7 +69,6 @@ bool operator==(const uint2022_t& lhs, const uint2022_t& rhs) {
     return true;
 }
 
-// Сравнение (!=)
 bool operator!=(const uint2022_t& lhs, const uint2022_t& rhs) {
     return !(lhs == rhs);
 }
@@ -85,9 +78,8 @@ static std::pair<uint2022_t, uint32_t> divmod10(const uint2022_t& num) {
     uint2022_t quotient;
     memset(&quotient, 0, sizeof(quotient));
 
-    uint64_t remainder = 0;  // Перенос для деления
+    uint64_t remainder = 0;
 
-    // Обрабатываем части от старших к младшим
     for (int i = 63; i >= 0; i--) {
         uint64_t current = (remainder << 32) | num.parts[i];
         uint64_t digit = current / 10;
@@ -99,7 +91,6 @@ static std::pair<uint2022_t, uint32_t> divmod10(const uint2022_t& num) {
     return { quotient, static_cast<uint32_t>(remainder) };
 }
 
-// Обновляем оператор вывода
 std::ostream& operator<<(std::ostream& stream, const uint2022_t& value) {
     if (value == from_uint(0)) {
         stream << "0";
@@ -116,7 +107,6 @@ std::ostream& operator<<(std::ostream& stream, const uint2022_t& value) {
         num = quotient;
     }
 
-    // Разворачиваем цифры
     std::reverse(buffer, buffer + index);
     buffer[index] = '\0';
 
