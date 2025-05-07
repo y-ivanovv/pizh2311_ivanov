@@ -3,7 +3,7 @@
 #include <iostream>
 
 struct uint2022_t {
-    uint32_t parts[64] = {};  // 64 элемента по 4 байта = 256 байт (<300)
+    uint32_t parts[64] = {};
 };
 
 static_assert(sizeof(uint2022_t) <= 300, "Size of uint2022_t must be no higher than 300 bytes");
