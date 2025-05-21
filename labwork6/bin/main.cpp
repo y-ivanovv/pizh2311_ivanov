@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
 
     std::ifstream file(argv[1]);
     if (!file) {
-        std::cerr << "Error: File not found or cannot be opened." << std::endl;
+        std::cerr << "Error: File not found." << std::endl;
 
         return 1;
     }
@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
     auto root = omfl::parse(file_content);
     if (!root.valid()) {
-        std::cerr << "Error: Invalid OMFL file. Check syntax (e.g., unclosed quotes, brackets, or invalid keys)." << std::endl;
+        std::cerr << "Error: Invalid OMFL file.)." << std::endl;
 
         return 1;
     }
