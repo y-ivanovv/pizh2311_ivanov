@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/User/Desktop/labwork7/out/build/x64-Debug/tests/parser_tests[1]_tests.cmake")
-  include("C:/Users/User/Desktop/labwork7/out/build/x64-Debug/tests/parser_tests[1]_tests.cmake")
-else()
-  add_test(parser_tests_NOT_BUILT parser_tests_NOT_BUILT)
-endif()
