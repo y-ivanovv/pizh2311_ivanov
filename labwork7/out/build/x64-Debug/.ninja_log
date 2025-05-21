@@ -1,0 +1,5 @@
+# ninja log v5
+18	2259	7695545508235831	bin/CMakeFiles/lab6.dir/main.cpp.obj	bc08d413d6fa5bd9
+6	2317	7695545509791673	lib/CMakeFiles/ITMLparse.dir/AudioParser.cpp.obj	301d4f16aa5520a9
+2317	2531	7695545511915999	lib/ITMLparse.lib	11497f64479088d0
+2531	3798	7695545524332785	bin/lab6.exe	2f859f6f1097b82d
